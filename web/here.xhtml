@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+To change this license header, choose License Headers in Project Properties.
+To change this template file, choose Tools | Templates
+and open the template in the editor.
+-->
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <title>TODO supply a title</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+        
+        <script src="https://meet.jit.si/libs/lib-jitsi-meet.min.js"></script>
+        
+        <link rel="stylesheet" type="text/css" href="css/bootstrap.css" ></link>
+    </head>
+    <body>
+        <div>TODO write content</div>
+        
+        <script>
+            JitsiMeetJS.init();
+            var connection = new JitsiMeetJS.JitsiConnection(null, null, options);
+            
+            connection.addEventListener(JitsiMeetJS.events.connection.CONNECTION_ESTABLISHED, onConnectionSuccess = () => {
+                // After you receive the CONNECTION_ESTABLISHED event you are to create the JitsiConference object
+                // you may want to attach listeners for conference events (we are going to add handlers for remote track, conference joined, etc.
+                
+                var room = connection.initJitsiConference("JavaRoomUI", confOptions);
+                room.on(JitsiMeetJS.events.conference.TRACK_ADDED, onRemoteTrack);
+                room.on(JitsiMeetJS.events.conference.CONFERENCE_JOINED, onConferenceJoined);
+                
+                room.join();
+                
+            });
+            connection.addEventListener(JitsiMeetJS.events.connection.CONNECTION_FAILED, onConnectionFailed = () => {
+                
+            });
+            connection.addEventListener(JitsiMeetJS.events.connection.CONNECTION_DISCONNECTED, disconnect = () => {
+                
+            });
+
+            connection.connect();
+        </script>
+    </body>
+</html>
